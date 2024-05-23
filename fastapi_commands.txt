@@ -1,0 +1,6 @@
+Installation: 
+- pip install fastapi[all] -> Install all libraries related to fastapi
+- pip install fastapi "uvicorn[standar]" -> Install standar version to use fastapi
+
+COMMANDS:
+- uvicorn main:app --reload -> Run the fastapi app using uvicorn
