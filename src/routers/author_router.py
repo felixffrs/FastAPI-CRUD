@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from schemas import author_schemas
 from sqlalchemy.orm import Session
 from database import get_db
-from cruds.author_crud import create_user
+from cruds import author_crud
 from dependencies import get_token
 
 router = APIRouter(
@@ -13,5 +13,5 @@ router = APIRouter(
 )
 
 @router.post("", response_model=author_schemas.Author)
-def create_user_endopint(author: author_schemas.AuthorCreate, db: Session = Depends(get_db)): 
-    return create_user(db=db, author=author)
+def create_author(author: author_schemas.AuthorCreate, db: Session = Depends(get_db)): 
+    return author_crud.create_author(db=db, author=author)
