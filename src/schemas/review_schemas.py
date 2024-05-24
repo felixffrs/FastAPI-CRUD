@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 
 class ReviewBase(BaseModel):
-    rating: str
-    description: int
+    rating: int
+    description: str
 
 class ReviewCreate(ReviewBase):
-    book_id: int
+    pass
 
 class Review(ReviewBase):
     id: int

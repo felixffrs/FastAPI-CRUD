@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from schemas import author_schemas
 from sqlalchemy.orm import Session
 from database import get_db
@@ -15,3 +15,11 @@ router = APIRouter(
 @router.post("", response_model=author_schemas.Author)
 def create_author(author: author_schemas.AuthorCreate, db: Session = Depends(get_db)): 
     return author_crud.create_author(db=db, author=author)
+
+@router.get("", response_model=list[author_schemas.Author])
+def get_all_authors(db: Session = Depends(get_db)): 
+    return author_crud.get_all_authors(db=db)
+
+@router.get("/{id}", response_model=author_schemas.Author)
+def get_author_by_id(id: int, db: Session = Depends(get_db)): 
+    return author_crud.get_author_by_id(db=db, id=id)
